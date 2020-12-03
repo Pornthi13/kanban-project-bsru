@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-   <Kanban :data = "data"/>
+   <Kanban :data = "data" :cerate_task_submit="cerate_task_submit"/>
   </div>
 </template>
 
@@ -18,20 +18,31 @@ export default {
       data:[
         {
           name:"todo",
-          colors:"#FF3333",
-          tasks:[]
+          colors:"#CC00FF",
+          tasks:[{
+            task_name:"task"
+          }]
         },
         {
           name:"doing",
-          colors:"#CC00FF",
-          tasks:[]
+          colors:"#FF6699",
+          tasks:[{
+            task_name:"task"
+          }]
         },
         {
           name:"done",
           colors:"#6666FF",
-          tasks:[]
+          tasks:[{
+            task_name:"task"
+          }]
         }
       ]
+    }
+  },
+  methods:{
+    cerate_task_submit(column_index,item){
+      this.data[column_index].tasks.push(item)
     }
   }
 }
