@@ -1,19 +1,77 @@
 <template>
   <div class="kanban">
-      Kanban
+    <div
+      class="column"
+      :style="{backgroundColor:column.colors}"
+      v-for="(column,index) in data"
+      :key="index"
+    >
+      <div class="column-header">{{column.name}}</div>
+
+      <div class="column-body">
+        <div class="create-tast" @click="create_tast(index)">create Tast</div>
+      </div>
+    </div>
+    <b-modal ref="create-tast-mobal" title="Create Tast">
+    <p class="my-4">Hello from modal!</p>
+    </b-modal>
   </div>
 </template>
 
 <script>
 export default {
-
-}
+  props: {
+    data: Array,
+  },
+  methods:{
+      create_tast(index_column){
+          console.log(index_column);
+          this.$refs["create-tast-mobal"].show()
+      },
+  },
+};
 </script>
 
 <style>
- .kanban{
-     height: 100%;
-     width: 100%;
-     background-color: crimson;
- }
+.kanban {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(228, 114, 175);
+}
+.column {
+  height: 600px;
+  width: 300px;
+  border-radius: 20px;
+  display: inline-block;
+  margin: 25px;
+  padding: 10px;
+  padding: auto;
+  -webkit-box-shadow: 10px 13px 5px 0px rgba(0, 0, 0, 0.37);
+  -moz-box-shadow: 10px 13px 5px 0px rgba(0, 0, 0, 0.37);
+  box-shadow: 10px 13px 5px 0px rgba(0, 0, 0, 0.37);
+}
+.column-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  font-size: 32px;
+  font-weight: bold;
+}
+.column-body {
+  height: calc(100% - 55px);
+  border-radius: 10px;
+  padding: 5px;
+  background-color: rgba(207, 207, 221, 0.479);
+}
+.create-tast {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.create-tast:hover{
+    background-color: lightsalmon;
+}
 </style>
